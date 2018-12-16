@@ -1,2 +1,6 @@
 # vscode settings
 .vscode/*
+
+# ignore ipynb checkpoints
+
+.ipynb_checkpoints/*
