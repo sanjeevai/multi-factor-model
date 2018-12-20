@@ -25,13 +25,15 @@
 ****
 ### Project Overview
 
-In this project, I will build a **statistical risk model using PCA.** I’ll use this model to build a portfolio along with 5 alpha factors. I’ll create these factors, then evaluate them using factor-weighted returns, quantile analysis, sharpe ratio, and turnover analysis. At the end of the project, I’ll optimize the portfolio using the risk model and factors using multiple optimization formulations. For the dataset, we'll be using the end of day from [Quotemedia](https://www.quotemedia.com) and sector data from [Sharadar](http://www.sharadar.com/).
+In this project, I will build a **statistical risk model using PCA.** I’ll use this model to build a portfolio along with 5 alpha factors. I’ll create these factors, then evaluate them using factor-weighted returns, quantile analysis, sharpe ratio, and turnover analysis. At the end of the project, I’ll optimize the portfolio using the risk model and factors using multiple optimization formulations.
 
 <a id='data'></a>
 
 ### Data
 
-Udacity doesn't have a license to redistribute the data to us. They are working on alternatives to this [problem](https://github.com/udacity/artificial-intelligence-for-trading).
+For the dataset, we'll be using the end of day from [Quotemedia](https://www.quotemedia.com) and sector data from [Sharadar](http://www.sharadar.com/).
+
+Udacity doesn't have a license to redistribute the data to us. They are working on alternatives to this [problem](https://github.com/udacity/artificial-intelligence-for-trading/#no-data).
 
 <a id='stat_risk_model'></a>
 
