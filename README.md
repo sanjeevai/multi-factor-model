@@ -310,7 +310,7 @@ To use these alphas in a portfolio, we need to combine them somehow so we get a 
 
 This is the list of contraints that will optimize against:
 
-![objective_constraints](img/objective_constraints.jpg)
+<img src="img/objective_constraints.jpg" alt="objective_constraint" width="200"/>
 
 Where _x_ is the portfolio weights, _B_ is the factor betas, and _r_ is the portfolio risk
 
@@ -351,6 +351,8 @@ Another common formulation is to take a predefined target weighting(e.g., a quan
 ### Libraries
 
 This project used Python 3.6.3. The necessary libraries are mentioned in `requirements.txt`:
+
+<a id='refs'></a>
 
 ### References
 
