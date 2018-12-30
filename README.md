@@ -27,7 +27,7 @@
 
 ### Project Overview
 
-In this project, I will build a **statistical risk model using PCA.** I’ll use this model to build a portfolio along with 5 alpha factors. I’ll create these factors, then evaluate them using factor-weighted returns, quantile analysis, sharpe ratio, and turnover analysis. At the end of the project, I’ll optimize the portfolio using the risk model and factors using multiple optimization formulations.
+In this project, I will build a [statistical risk model using PCA](#stat_risk_model). I’ll use this model to build a portfolio along with **5 alpha factors**. I’ll **create** these factors, then **evaluate** them using **factor-weighted returns, quantile analysis, sharpe ratio,** and **turnover analysis.** At the end of the project, I’ll optimize the portfolio using the risk model and factors using multiple optimization formulations.
 
 <a id='data'></a>
 
@@ -100,8 +100,6 @@ def mean_reversion_5day_sector_neutral(window_length, universe, sector):
         Mean reversion 5 day sector neutral factor
     """
     
-    
-    
     return -Returns(window_length=window_length, mask = universe)\
                     .demean(groupby=sector)\
                     .rank()\
@@ -135,9 +133,7 @@ def mean_reversion_5day_sector_neutral_smoothed(window_length, universe, sector)
     factor : Zipline Factor
         Mean reversion 5 day sector neutral smoothed factor
     """
-
-    #TODO: Implement function
-
+    
     mean_reversion = mean_reversion_5day_sector_neutral(window_length, universe, sector)
 
     return SimpleMovingAverage(inputs=[mean_reversion], window_length = window_length).rank().zscore()
@@ -179,9 +175,10 @@ class TrailingOvernightReturns(Returns):
 
 def overnight_sentiment(cto_window_length, trail_overnight_returns_window_length, universe):
     cto_out = CTO(mask=universe, window_length=cto_window_length)
-    return TrailingOvernightReturns(inputs=[cto_out], window_length=trail_overnight_returns_window_length) \
-        .rank() \
-        .zscore()
+    return TrailingOvernightReturns(
+         inputs=[cto_out],window_length=trail_overnight_returns_window_length
+         )\
+         .rank().zscore()
 ```
 
 <a id='overnight_smoothed'></a>
@@ -192,10 +189,14 @@ Just like the implemented factor, we'll also smooth this factor.
 
 ```python
 def overnight_sentiment_smoothed(cto_window_length, trail_overnight_returns_window_length, universe):
+
     unsmoothed_factor = overnight_sentiment(cto_window_length, trail_overnight_returns_window_length, universe)
-    return SimpleMovingAverage(inputs=[unsmoothed_factor], window_length=trail_overnight_returns_window_length) \
-        .rank() \
-        .zscore()
+    
+    return SimpleMovingAverage(
+            inputs=[unsmoothed_factor], window_length=trail_overnight_returns_window_length
+            ) \
+            .rank() \
+            .zscore()
 ```
 
 <a id='alpha_combined'></a>
