@@ -18,8 +18,12 @@
    5. [Overnight Sentiment Factor Smoothed](#overnight_smoothed)
 5. [The Combined Alpha Factor](#alpha_combined)
 6. [Evaluate Alpha Factors](#eval)
-7. [Libraries](#lib)
-8. [References](#refs)
+7. [Optimal Portfolio Constrained by Risk Model](#optimize)
+    1. [Objective and Constraints](#objective_constraints)
+    2. [Optimize with a Regularization Parameter](#optimization)
+    3. [Optimize with a Strict Factor Constraints and Target Weighting](#strict_optimization)
+8. [Libraries](#lib)
+9. [References](#refs)
 
 <a id='overview'></a>
 
@@ -296,6 +300,52 @@ Sharpe Ratio of 1.13 for momentum factor is good but if we look at the [auto-cor
 
 To use these alphas in a portfolio, we need to combine them somehow so we get a single score per stock. This is a area where machine learning can be very helpful. In this module, however, we will take the simplest approach of combination: simply averaging the scores from each alpha.
 
+<a id='optimize'></a>
+
+### Optimal Portfolio Constrained by Risk Model
+
+<a id='objective_constraints'></a>
+
+#### Objective and Constraints
+
+This is the list of contraints that will optimize against:
+
+![objective_constraints](img/objective_constraints.jpg)
+
+Where _x_ is the portfolio weights, _B_ is the factor betas, and _r_ is the portfolio risk
+
+The first constraint is that the predicted risk be less than some maximum limit. The second and third constraints are on the maximum and minimum portfolio factor exposures. The fourth constraint is the "market neutral constraint: the sum of the weights must be zero. The fifth constraint is the leverage constraint: the sum of the absolute value of the weights must be less than or equal to 1.0. The last are some minimum and maximum limits on individual holdings.
+
+Weights generated after applying those constraints:
+
+![portfolio_holdings_by_stock](img/portfolio_holdings_by_stock.jpg)
+
+Yikes. It put most of the weight in a few stocks.
+
+![portfolio_net_factor_exp](img/portfolio_net_factor_exp.jpg)
+
+<a id='optimization'></a>
+
+#### Optimize with a Regularization Parameter
+
+This is the weights distribution after applying regularization to the **objective function**.
+
+![portfolio_holdings_by_stocks_reg](img/portfolio_holdings_by_stocks_reg.jpg)
+
+Nice. Well diverfied.
+
+![portfolio_net_factor_exp_reg](img/portfolio_net_factor_exp_reg.jpg)
+
+<a id='strict_optimization'></a>
+
+#### Optimize with a Strict Factor Constraints and Target Weighting
+
+Another common formulation is to take a predefined target weighting(e.g., a quantile portfolio), and solve to get as close to that portfolio while respecting portfolio-level constraints.
+
+![portfolio_holdings_by_stocks_strict](img/portfolio_holdings_by_stocks_strict.jpg)
+
+![portfolio_net_factor_exp_strict](img/portfolio_net_factor_exp_strict.jpg)
+
 <a id='lib'></a>
 
 ### Libraries
@@ -307,7 +357,6 @@ This project used Python 3.6.3. The necessary libraries are mentioned in `requir
 <a id='ref1'></a>
 
 1. [Overnight Returns and Firm-Specific Investor Sentiment](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2554010)
-
 
 <a id='ref2'></a>
 
