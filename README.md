@@ -1,5 +1,5 @@
 
-# Artificial Intelligence for Trading
+# Artificial Intelligence for Trading Nanodegree
 
 ## Alpha Research and Factor Modelling
 
