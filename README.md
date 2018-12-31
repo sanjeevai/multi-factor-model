@@ -1,7 +1,7 @@
 
 # Artificial Intelligence for Trading
 
-## Momentum Trading
+## Alpha Research and Factor Modelling
 
 ## Project: Multi-Factor Model
 
